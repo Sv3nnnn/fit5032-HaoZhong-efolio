@@ -61,60 +61,82 @@
 
       <h3>Accessing Properties</h3>
       <p>
-        Company:
         <!-- Activity 9a: Get the company name from the bookstores object. -->
         <!-- TODO: CODE TO GET COMPANY NAME HERE -->
+        Company: {{ bookstores.name }}
       </p>
 
       <p>
-        Total Stores:
         <!-- Activity 9b: Get the total number of stores from the bookstores object. -->
         <!-- TODO: CODE TO GET TOTAL STORES HERE -->
+        Total Stores: {{ bookstores.totalStores }}
       </p>
 
       <h3>Iterating Object Properties</h3>
       <p>Store Types:</p>
       <!-- Activity 10: Iterate through the storeTypes array and display the store type and the number of stores that use that type. -->
       <!-- TODO: CODE TO RENDER LIST OF STORE TYPES HERE -->
-
+      <ul>
+        <li v-for="(count, type) in bookstores.storeTypes" :key="type">{{ type }}: {{ count }}</li>
+      </ul>
       <h3>Nested Objects</h3>
       <p>Opening Hours:</p>
       <!-- Activity 11: Iterate through the openingHours object and display the day of the week and the opening and closing times. -->
       <!-- TODO: CODE TO RENDER LIST OF OPENING HOURS HERE -->
-
+      <ul>
+        <li v-for="(hours, day) in bookstores.openingHours" :key="day">
+          {{ day }}: {{ hours.open }} - {{ hours.close }}
+        </li>
+      </ul>
       <h3>Working with Arrays in Objects</h3>
       <!-- Activity 12: Get the top sellers from the bookstores object. -->
       <!-- TODO: CODE TO GET TOP SELLERS HERE -->
       <p>We operate in:</p>
       <p>Our #1 seller:</p>
+      <ul>
+        <li v-for="country in bookstores.countries" :key="country">{{ country }}</li>
+      </ul>
+      <p>Our #1 seller:</p>
+      <ul>
+        <li v-for="book in bookstores.topSellers" :key="book">{{ book }}</li>
+      </ul>
     </section>
 
     <section class="lab-section">
       <h2>v-if & v-else</h2>
       <p>Toggle visibility based on a condition.</p>
       <!-- Activity 13: Toggle the message visibility when the button is clicked. -->
-      <!-- TODO: CODE TO TOGGLE MESSAGE VISIBILITY HERE. Hint: Use the v-if directive. -->
       <button @click="showMessage = !showMessage">Toggle Message</button>
-      <p v-if="showMessage" class="message success">✨ You're a Vue superstar! Yeahhhh! ✨</p>
+      <p v-if="showMessage" class="message success">✨ You're a Vue superstar! ✨</p>
       <p v-else class="message">Click the button to see a message.</p>
     </section>
 
     <section class="lab-section">
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
+      <ul>
+        <li
+          v-for="author in authors"
+          :key="author.name"
+          v-bind:title="author.name"
+          v-bind:class="{ highlight: author.name === 'George Orwell' }"
+          v-bind:style="author.name === 'George Orwell' ? highlightedStyle : {}"
+        >
+          {{ author.name }}
+        </li>
+      </ul>
     </section>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-
 // // Activity 1: Import JSON files (authors.json and bookstores.json)
 // // TODO: CODE TO IMPORT JSON FILES HERE
 import authors from '../assets/json/authors.json'
 import bookstores from '../assets/json/bookstores.json'
 
-// const showMessage = ref(false)
+const showMessage = ref(false)
 
 // // Activity 2: Get authors born after 1850
 // const modernAuthors = computed(() => {
