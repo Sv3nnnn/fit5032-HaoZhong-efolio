@@ -94,11 +94,14 @@
       <p>We operate in:</p>
       <p>Our #1 seller:</p>
       <ul>
-        <li v-for="country in bookstores.countries" :key="country">{{ country }}</li>
+        <li v-for="country in bookstores.countries" :key="country">
+          {{ country }}
+        </li>
       </ul>
-      <p>Our #1 seller:</p>
       <ul>
-        <li v-for="book in bookstores.topSellers" :key="book">{{ book }}</li>
+        <li v-for="book in bookstores.topSellers" :key="book">
+          {{ book }}
+        </li>
       </ul>
     </section>
 
