@@ -38,13 +38,20 @@
 
       <h3>Finding in Arrays</h3>
       <p>Finding by property: {{ orwell?.name }}</p>
+      <ul>
+        <li v-for="work in orwell" :key="work">
+          {{ work }}
+        </li>
+      </ul>
 
       <h3>Nested Arrays/Objects</h3>
       <p>{{ austen?.name }}'s works:</p>
       <!-- Activity 9: Render a list of Austen's works. Hint: Use the v-for directive to iterate through the array of authors that you have filtered out. -->
       <!-- TODO: CODE TO RENDER LIST OF AUSTEN'S WORKS HERE -->
       <ul>
-        <li v-for="authors in austen" :key="name"></li>
+        <li v-for="work in austen" :key="work">
+          {{ work }}
+        </li>
       </ul>
     </section>
 
