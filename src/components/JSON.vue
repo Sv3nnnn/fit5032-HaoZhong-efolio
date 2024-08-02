@@ -92,12 +92,12 @@
       <!-- Activity 12: Get the top sellers from the bookstores object. -->
       <!-- TODO: CODE TO GET TOP SELLERS HERE -->
       <p>We operate in:</p>
-      <p>Our #1 seller:</p>
       <ul>
         <li v-for="country in bookstores.countries" :key="country">
           {{ country }}
         </li>
       </ul>
+      <p>Our #1 seller:</p>
       <ul>
         <li v-for="book in bookstores.topSellers" :key="book">
           {{ book }}
