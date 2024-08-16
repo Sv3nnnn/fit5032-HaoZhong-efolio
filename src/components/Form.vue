@@ -12,6 +12,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
 
 const formData = ref({
   username: '',
@@ -24,9 +26,89 @@ const formData = ref({
 const submittedCards = ref([])
 
 const submitForm = () => {
-  submittedCards.value.push({
-    ...formData.value
-  })
+  validateName(true)
+  if (
+    !errors.value.username &&
+    !errors.value.password &&
+    !errors.value.resident &&
+    !errors.value.gender &&
+    !errors.value.reason
+  ) {
+    submittedCards.value.push({ ...formData.value })
+    clearForm()
+  }
+}
+
+const clearForm = () => {
+  formData.value = {
+    username: '',
+    password: '',
+    isAustralian: false,
+    reason: '',
+    gender: ''
+  }
+}
+
+const errors = ref({
+  username: null,
+  password: null,
+  resident: null,
+  gender: null,
+  reason: null
+})
+
+const validateName = (blur) => {
+  if (formData.value.username.length < 3) {
+    if (blur) errors.value.username = 'Name must be at least 3 characters'
+  } else {
+    errors.value.username = null
+  }
+}
+
+const validatePassword = (blur) => {
+  const password = formData.value.password
+  const minLength = 8
+  const hasUppercase = /[A-Z]/.test(password)
+  const hasLowercase = /[a-z]/.test(password)
+  const hasNumber = /\d/.test(password)
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+  if (password.length < minLength) {
+    if (blur) errors.value.password = `Password must be at least ${minLength} characters long.`
+  } else if (!hasUppercase) {
+    if (blur) errors.value.password = 'Password must contain at least one uppercase letter.'
+  } else if (!hasLowercase) {
+    if (blur) errors.value.password = 'Password must contain at least one lowercase letter.'
+  } else if (!hasNumber) {
+    if (blur) errors.value.password = 'Password must contain at least one number.'
+  } else if (!hasSpecialChar) {
+    if (blur) errors.value.password = 'Password must contain at least one special character.'
+  } else {
+    errors.value.password = null
+  }
+}
+
+const validateResident = (blur) => {
+  if (!formData.value.isAustralian) {
+    if (blur) errors.value.resident = 'Please confirm if you are an Australian resident.'
+  } else {
+    errors.value.resident = null
+  }
+}
+
+const validateGender = (blur) => {
+  if (!formData.value.gender) {
+    if (blur) errors.value.gender = 'Please select your gender.'
+  } else {
+    errors.value.gender = null
+  }
+}
+
+const validateReason = (blur) => {
+  if (formData.value.reason.length < 10) {
+    if (blur) errors.value.reason = 'Reason for joining must be at least 10 characters long.'
+  } else {
+    errors.value.reason = null
+  }
 }
 </script>
 
@@ -165,9 +247,11 @@ const submitForm = () => {
           type="text"
           class="form-control"
           id="username"
-          required
+          @blur="() => validateName(true)"
+          @input="() => validateName(false)"
           v-model="formData.username"
         />
+        <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
@@ -175,10 +259,11 @@ const submitForm = () => {
           type="password"
           class="form-control"
           id="password"
-          minlength="4"
-          maxlength="10"
+          @blur="() => validatePassword(true)"
+          @input="() => validatePassword(false)"
           v-model="formData.password"
         />
+        <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
       </div>
       <div class="mb-3">
         <div class="form-check">
@@ -186,10 +271,12 @@ const submitForm = () => {
             type="checkbox"
             class="form-check-input"
             id="isAustralian"
-            required
+            @blur="() => validateResident(true)"
+            @input="() => validateResident(false)"
             v-model="formData.isAustralian"
           />
           <label class="form-check-label" for="isAustralian">Australian Resident?</label>
+          <div v-if="errors.resident" class="text-danger">{{ errors.resident }}</div>
         </div>
       </div>
       <div class="mb-3">
@@ -198,24 +285,42 @@ const submitForm = () => {
           class="form-control"
           id="reason"
           rows="3"
-          minlength="10"
-          maxlength="100"
+          @blur="() => validateReason(true)"
+          @input="() => validateReason(false)"
           v-model="formData.reason"
         ></textarea>
+        <div v-if="errors.reason" class="text-danger">{{ errors.reason }}</div>
       </div>
       <div class="mb-3">
         <label for="gender" class="form-label">Gender</label>
-        <select class="form-select" id="gender" required v-model="formData.gender">
+        <select
+          class="form-select"
+          id="gender"
+          @blur="() => validateGender(true)"
+          @input="() => validateGender(false)"
+          v-model="formData.gender"
+        >
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select>
+        <div v-if="errors.gender" class="text-danger">{{ errors.gender }}</div>
       </div>
       <div class="text-center">
         <button type="submit" class="btn btn-primary me-2">Submit</button>
         <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
       </div>
       <div class="row mt-5" v-if="submittedCards.length">
+        <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
+          <Column field="username" header="Username"></Column>
+          <Column field="password" header="Password"></Column>
+          <Column field="isAustralian" header="Isaustralian"></Column>
+          <Column field="reason" header="Reason"></Column>
+          <Column field="gender" header="Gender"></Column>
+        </DataTable>
+      </div>
+
+      <!-- <div class="row mt-5" v-if="submittedCards.length">
         <div class="d-flex flex-wrap justify-content-start">
           <div
             v-for="(card, index) in submittedCards"
@@ -235,7 +340,7 @@ const submitForm = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </form>
   </div>
 </template>
