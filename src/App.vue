@@ -1,18 +1,21 @@
 <script setup>
-import JSONLab from './components/JSONLab.vue'
+// import JSONLab from './components/JSONLab.vue'
 import BHeader from './components/BHeader.vue'
-import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
+// import RegistrationForm from './views/RegistrationForm.vue'
 </script>
 
 <template>
-  <header>
-    <BHeader />
-  </header>
+  <div class="main-contaniner">
+    <header>
+      <BHeader />
+    </header>
 
-  <main>
-    <LibraryRegistrationForm />
+  <main class="main-box">
+
     <!-- <JSONLab /> -->
+     <router-view></router-view>
   </main>
+  </div>
 </template>
 
 <style scoped>
