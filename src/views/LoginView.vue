@@ -81,7 +81,6 @@ const handleLogin = () => {
       password: password.value,
       rememberMe: rememberMe.value
     })
-    // Add your login logic here
   } else {
     console.log('Form is not valid. Please correct the errors.')
   }
@@ -96,5 +95,4 @@ const clearForm = () => {
 </script>
 
 <style scoped>
-/* You can add any additional custom styles here */
 </style>
