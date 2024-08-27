@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
+// import DataTable from 'primevue/datatable'
+// import Column from 'primevue/column'
 
 const formData = ref({
   username: '',
@@ -89,12 +89,11 @@ const validateConfirmPassword = (blur) => {
       <div class="col-md-8 offset-md-2">
         <h1 class="text-center">Registration Form</h1>
         <p class="text-center">
-          This form now includes validation. Registered users are displayed in a data table below
-          (PrimeVue).
+          Migrant-Communities!
         </p>
         <form @submit.prevent="submitForm">
           <div class="row mb-3">
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6">
               <label for="username" class="form-label">Username</label>
               <input
                 type="text"
@@ -106,8 +105,17 @@ const validateConfirmPassword = (blur) => {
               />
               <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
             </div>
-
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6">
+              <label for="gender" class="form-label">Gender</label>
+              <select class="form-select" id="gender" v-model="formData.gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
               <label for="password" class="form-label">Password</label>
               <input
                 type="password"
@@ -119,37 +127,27 @@ const validateConfirmPassword = (blur) => {
               />
               <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
             </div>
-          </div>
-          <div class="col-md-6 col-sm-6">
-            <label for="confirm-password" class="form-label">Confirm password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="confirm-password"
-              v-model="formData.confirmPassword"
-              @blur="() => validateConfirmPassword(true)"
-            />
-            <div v-if="errors.confirmPassword" class="text-danger">{{ errors.confirmPassword }}</div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-md-6 col-sm-6">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="isAustralian"
-                  v-model="formData.isAustralian"
-                />
-                <label class="form-check-label" for="isAustralian">Australian Resident?</label>
-              </div>
+            <div class="col-md-6">
+              <label for="confirm-password" class="form-label">Confirm password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="confirm-password"
+                v-model="formData.confirmPassword"
+                @blur="() => validateConfirmPassword(true)"
+              />
+              <div v-if="errors.confirmPassword" class="text-danger">{{ errors.confirmPassword }}</div>
             </div>
-            <div class="col-md-6 col-sm-6">
-              <label for="gender" class="form-label">Gender</label>
-              <select class="form-select" id="gender" v-model="formData.gender" required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="isAustralian"
+                v-model="formData.isAustralian"
+              />
+              <label class="form-check-label" for="isAustralian">Australian Resident?</label>
             </div>
           </div>
           <div class="mb-3">
@@ -170,38 +168,7 @@ const validateConfirmPassword = (blur) => {
     </div>
   </div>
 
-  <!-- <div class="row mt-5">
-    <h4>This is a Primevue Datatable.</h4>
-    <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
-      <Column field="username" header="Username"></Column>
-      <Column field="password" header="Password"></Column>
-      <Column field="isAustralian" header="Australian Resident"></Column>
-      <Column field="gender" header="Gender"></Column>
-      <Column field="reason" header="Reason"></Column>
-    </DataTable>
-  </div>
-
-  <div class="row mt-5" v-if="submittedCards.length">
-    <div class="d-flex flex-wrap justify-content-start">
-      <div
-        v-for="(card, index) in submittedCards"
-        :key="index"
-        class="card m-2"
-        style="width: 18rem"
-      >
-        <div class="card-header">User Information</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Username: {{ card.username }}</li>
-          <li class="list-group-item">Password: {{ card.password }}</li>
-          <li class="list-group-item">
-            Australian Resident: {{ card.isAustralian ? 'Yes' : 'No' }}
-          </li>
-          <li class="list-group-item">Gender: {{ card.gender }}</li>
-          <li class="list-group-item">Reason: {{ card.reason }}</li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
+  <!-- Rest of the template remains unchanged -->
 </template>
 
 <style scoped>
