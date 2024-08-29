@@ -10,15 +10,15 @@ import BHeader from './components/BHeader.vue'
       <BHeader />
     </header>
 
-  <main class="main-box">
-
-    <!-- <JSONLab /> -->
-     <router-view></router-view>
-  </main>
+    <main class="main-box">
+      <!-- <JSONLab /> -->
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
 <style scoped>
+
 /* header {
   line-height: 1.5;
 }

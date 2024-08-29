@@ -1,21 +1,48 @@
 <template>
-  <!-- Using Bootstrap's Header template (starter code) -->
-  <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
   <div class="container">
-    <header class="d-flex justify-content-center py-3">
+    <header class="d-flex justify-content-between align-items-center py-3">
+      
+      <!-- <div class="d-flex align-items-center">
+        <img src="" alt="Web icon" width="40" height="40" />
+      </div> -->
+
+      <!-- Links between pages -->
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <router-link to="/registration" class="nav-link" active-class="active" aria-current="page"
-            >Registration</router-link
-          >
+          <router-link to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
+          <router-link to="/Language Support" class="nav-link">Language Support</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/Employment Support" class="nav-link">Employment Support</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/Cultural Education" class="nav-link">Cultural Education</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/Health Service" class="nav-link">Health Service</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/Global Map" class="nav-link">Global Map</router-link>
         </li>
       </ul>
+
+      <!--Login/Register button -->
+      <div>
+        <router-link to="/login" class="btn btn-outline-primary">Login</router-link>
+        <router-link to="/Registration" class="btn btn-primary ms-2">Sign Up</router-link>
+      </div>
     </header>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'HeaderComponent',
+};
+</script>
+
 
 <style scoped>
 .b-example-divider {
