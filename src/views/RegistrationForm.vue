@@ -10,7 +10,7 @@ const formData = ref({
   isAustralian: false,
   reason: '',
   gender: '',
-  suburb: ''
+  suburb: 'Clayton'
 })
 
 const submittedCards = ref([])
@@ -30,7 +30,8 @@ const clearForm = () => {
     password: '',
     isAustralian: false,
     reason: '',
-    gender: ''
+    gender: '',
+    suburb: ''
   }
 }
 
@@ -40,7 +41,8 @@ const errors = ref({
   confirmPassword: null,
   resident: null,
   gender: null,
-  reason: null
+  reason: null,
+  suburb: null
 })
 
 const validateName = (blur) => {
