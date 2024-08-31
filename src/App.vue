@@ -2,6 +2,7 @@
 // import JSONLab from './components/JSONLab.vue'
 import BHeader from './components/BHeader.vue'
 // import RegistrationForm from './views/RegistrationForm.vue'
+import FooterComponent from './components/Footer.vue'
 </script>
 
 <template>
@@ -14,6 +15,9 @@ import BHeader from './components/BHeader.vue'
       <!-- <JSONLab /> -->
       <router-view></router-view>
     </main>
+    <footer>
+      <FooterComponent />
+    </footer>
   </div>
 </template>
 

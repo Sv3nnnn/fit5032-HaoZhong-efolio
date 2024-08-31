@@ -45,6 +45,16 @@ export default {
 
 
 <style scoped>
+.header-container {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.nav-link {
+  color: #6c757d !important;
+}
+
 .b-example-divider {
   height: 3rem;
   background-color: rgba(0, 0, 0, 0.1);
