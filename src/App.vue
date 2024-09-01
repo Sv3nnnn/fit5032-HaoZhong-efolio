@@ -6,7 +6,7 @@ import FooterComponent from './components/Footer.vue'
 </script>
 
 <template>
-  <div class="main-contaniner">
+  <div class="main-container">
     <header>
       <BHeader />
     </header>
@@ -22,31 +22,17 @@ import FooterComponent from './components/Footer.vue'
 </template>
 
 <style scoped>
-
-/* header {
-  line-height: 1.5;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.main-box {
+  flex: 1;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-} */
+footer {
+  width: 100%;
+}
 </style>

@@ -18,15 +18,17 @@
   };
   </script>
   
+
   <style scoped>
   footer {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 1rem;
     margin-top: 2rem;
+    background-color: #f8f9fa;
+    width: 100%;
   }
-  
+    
   .nav-link {
     color: #6c757d !important;
   }
   </style>
-  
