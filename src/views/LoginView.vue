@@ -1,3 +1,29 @@
+<script>
+import { users } from '@/data/UserRoles';
+
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      errorMessage: ''
+    };
+  },
+  methods: {
+    login() {
+      const user = users.find(
+        user => user.username === this.username && user.password === this.password
+      );
+      if (user) {
+        this.$emit('login-success', user.role);
+      } else {
+        this.errorMessage = 'Invalid username or password';
+      }
+    }
+  }
+};
+</script>
+
 <template>
   <div class="container mt-5">
     <div class="row">
