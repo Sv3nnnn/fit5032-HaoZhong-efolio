@@ -1,6 +1,6 @@
 <template>
     <footer class="d-flex justify-content-between align-items-center py-3">
-      <p class="text-muted">&copy; 2024 Your Website Name</p>
+      <p class="text-muted">&copy; Hao Zhong--hzho0079@student.monash.edu</p>
       <ul class="nav">
         <li class="nav-item">
           <router-link to="/privacy-policy" class="nav-link text-muted">Privacy Policy</router-link>

@@ -3,6 +3,8 @@
 import BHeader from './components/BHeader.vue'
 // import RegistrationForm from './views/RegistrationForm.vue'
 import FooterComponent from './components/Footer.vue'
+
+
 </script>
 
 <template>

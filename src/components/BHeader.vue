@@ -1,35 +1,25 @@
 <template>
   <div class="container">
     <header class="d-flex justify-content-between align-items-center py-3">
-      
-      <!-- <div class="d-flex align-items-center">
-        <img src="" alt="Web icon" width="40" height="40" />
-      </div> -->
-
       <!-- Links between pages -->
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Home</router-link>
+          <router-link to="/home" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/Language Support" class="nav-link">Language Support</router-link>
+          <router-link to="/rating" class="nav-link">Rating</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/Employment Support" class="nav-link">Employment Support</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Cultural Education" class="nav-link">Cultural Education</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Health Service" class="nav-link">Health Service</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Global Map" class="nav-link">Global Map</router-link>
+        <li v-if="isAdmin" class="nav-item">
+          <router-link to="/admin" class="nav-link">Admin Panel</router-link>
         </li>
       </ul>
 
-      <!--Login/Register button -->
-      <div>
+      <!-- User actions -->
+      <div v-if="user">
+        <span class="me-2">Welcome, {{ user.email }}</span>
+        <button @click="logout" class="btn btn-outline-danger">Logout</button>
+      </div>
+      <div v-else>
         <router-link to="/login" class="btn btn-outline-primary">Login</router-link>
         <router-link to="/Registration" class="btn btn-primary ms-2">Sign Up</router-link>
       </div>
@@ -37,12 +27,57 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HeaderComponent',
-};
-</script>
+<script setup>
+import { ref, onMounted } from 'vue'
+import { auth, db } from '../firebase/config'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { doc, getDoc } from 'firebase/firestore'
+import { useRouter } from 'vue-router'
 
+const user = ref(null)
+const isAdmin = ref(false)
+const router = useRouter()
+
+const checkUserRole = async (user) => {
+  if (!user) {
+    isAdmin.value = false
+    return
+  }
+
+  try {
+    const userDoc = await getDoc(doc(db, 'users', user.uid))
+    if (userDoc.exists()) {
+      const userData = userDoc.data()
+      isAdmin.value = userData.role === 'admin'
+    } else {
+      isAdmin.value = false
+    }
+  } catch (error) {
+    console.error('Error checking user role:', error)
+    isAdmin.value = false
+  }
+}
+
+const logout = async () => {
+  try {
+    await signOut(auth)
+    router.push('/home')
+  } catch (error) {
+    console.error('Error signing out:', error)
+  }
+}
+
+onMounted(() => {
+  onAuthStateChanged(auth, async (authUser) => {
+    user.value = authUser
+    if (authUser) {
+      await checkUserRole(authUser)
+    } else {
+      isAdmin.value = false
+    }
+  })
+})
+</script>
 
 <style scoped>
 .header-container {
