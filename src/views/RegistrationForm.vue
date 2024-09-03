@@ -127,14 +127,15 @@ const submitForm = async () => {
       suburb: formData.value.suburb,
       role: 'customer' // Set user role as customer
     })
-
     console.log('User registered successfully')
     // Redirect to home page
     router.push('/home')
+    
   } catch (err) {
     console.error('Registration failed', err.message)
     error.value = err.message
   }
+
 }
 </script>
 

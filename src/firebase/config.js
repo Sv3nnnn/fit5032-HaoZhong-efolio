@@ -18,6 +18,14 @@ const firebaseConfig = {
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+
+    // apiKey: "AIzaSyBQECCuDYVH7Ctc_5h05dQ8_Fh_3W_J92U",
+    // authDomain: "fit5032-assignment-2ea39.firebaseapp.com",
+    // projectId: "fit5032-assignment-2ea39",
+    // storageBucket: "fit5032-assignment-2ea39.appspot.com",
+    // messagingSenderId: "263668725123",
+    // appId: "1:263668725123:web:2a69952b96664ae3a732b6",
+    // measurementId: "G-H5JN1HP8YW"
 }
 
 // Initialize Firebase
