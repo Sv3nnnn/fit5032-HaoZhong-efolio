@@ -63,6 +63,8 @@ const errors = ref({
   password: null
 })
 
+const adminEmails = ['admin@gmail.com']
+
 const validatePassword = (blur) => {
   const password = formData.value.password
   const minLength = 8
@@ -117,7 +119,8 @@ const submitForm = async () => {
     const userCredential = await createUserWithEmailAndPassword(auth, formData.value.email, formData.value.password)
     const user = userCredential.user
     const hashedPassword = hashPassword(formData.value.password);
-
+    const role = adminEmails.includes(formData.value.email) ? 'admin' : 'customer'
+    
     // Store user data in Firestore database
     await setDoc(doc(db, "users", user.uid), {
       password: hashedPassword, // store hashed password in Firestore
@@ -125,7 +128,7 @@ const submitForm = async () => {
       gender: formData.value.gender,
       reason: formData.value.reason,
       suburb: formData.value.suburb,
-      role: 'customer' // Set user role as customer
+      role: role
     })
     console.log('User registered successfully')
     // Redirect to home page
