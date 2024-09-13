@@ -3,6 +3,7 @@ import Registration from '@/views/RegistrationForm.vue'
 import Login from '@/views/LoginView.vue'
 import Home from '@/views/HomeView.vue'
 import Rating from '@/views/Rating.vue'
+import AddBook from '@/views/AddBookView.vue'
 
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: '/rating',
     name: 'Rating',
     component: Rating
+  },
+  {
+    path: '/addbook',
+    name: 'AddBook',
+    component: AddBook
   }
 ]
 
