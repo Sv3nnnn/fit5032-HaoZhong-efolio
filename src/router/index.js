@@ -10,7 +10,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
-  },
+  },git fetch source-repo
   {
     path: '/registration',
     name: 'Registration',
