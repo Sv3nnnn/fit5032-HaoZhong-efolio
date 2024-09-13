@@ -61,6 +61,10 @@ const checkUserRole = async (user) => {
 const logout = async () => {
   try {
     await signOut(auth)
+<<<<<<< HEAD
+=======
+    console.log('User has logged out') 
+>>>>>>> source-repo/main
     router.push('/home')
   } catch (error) {
     console.error('Error signing out:', error)
@@ -71,8 +75,15 @@ onMounted(() => {
   onAuthStateChanged(auth, async (authUser) => {
     user.value = authUser
     if (authUser) {
+<<<<<<< HEAD
       await checkUserRole(authUser)
     } else {
+=======
+      console.log('Current user:', authUser.email)
+      await checkUserRole(authUser)
+    } else {
+      console.log('No user is logged in') 
+>>>>>>> source-repo/main
       isAdmin.value = false
     }
   })
