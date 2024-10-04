@@ -5,6 +5,8 @@ import Home from '@/views/HomeView.vue'
 import Rating from '@/views/Rating.vue'
 import AddBook from '@/views/AddBookView.vue'
 import GetBookCount from '@/views/GetBookCountView.vue'
+import Weather from '@/views/WeatherView.vue'
+import CountBookAPI from '@/views/CountBookAPI.vue'
 
 
 
@@ -38,6 +40,16 @@ const routes = [
     path: '/GetBookCount',
     name: 'GetBookCount',
     component: GetBookCount
+  },
+  {
+    path: '/WeatherCheck',
+    name: 'WeatherCheck',
+    component: Weather
+  },
+  {
+    path: '/CountBookAPI',
+    name: 'CountBookAPI',
+    component: CountBookAPI
   }
 ]
 

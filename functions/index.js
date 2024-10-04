@@ -48,6 +48,24 @@ exports.capitalizeBookData = onDocumentCreated("books/{bookId}", (event) => {
   return null; // If no name is found, return null
 });
 
+// Function to return all books in Firestore
+exports.getAllBooks = onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const booksCollection = admin.firestore().collection("books");
+      const snapshot = await booksCollection.get();
+      const books = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      res.status(200).send(books);
+    } catch (error) {
+      console.error("Error fetching all books:", error.message);
+      res.status(500).send("Error fetching all books");
+    }
+  });
+});
+
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
