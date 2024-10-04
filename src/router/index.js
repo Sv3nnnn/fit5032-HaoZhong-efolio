@@ -4,6 +4,8 @@ import Login from '@/views/LoginView.vue'
 import Home from '@/views/HomeView.vue'
 import Rating from '@/views/Rating.vue'
 import AddBook from '@/views/AddBookView.vue'
+import GetBookCount from '@/views/GetBookCountView.vue'
+
 
 
 const routes = [
@@ -31,6 +33,11 @@ const routes = [
     path: '/addbook',
     name: 'AddBook',
     component: AddBook
+  },
+  {
+    path: '/GetBookCount',
+    name: 'GetBookCount',
+    component: GetBookCount
   }
 ]
 
