@@ -14,8 +14,10 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // 根据环境变量设置 base 路径
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+  },
   base: process.env.NODE_ENV === 'production'
-    ? '/fit5032-HaoZhong-efolio/'  // 生产环境下的基础路径（GitHub repository name）
-    : '/'  // 开发环境的基础路径
+    ? '/fit5032-HaoZhong-efolio/'  
+    : '/'  
 })
