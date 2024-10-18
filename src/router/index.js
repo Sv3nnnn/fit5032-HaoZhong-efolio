@@ -8,8 +8,7 @@ import GetBookCount from '@/views/GetBookCountView.vue'
 import Weather from '@/views/WeatherView.vue'
 import CountBookAPI from '@/views/CountBookAPI.vue'
 
-
-
+// 定义路由
 const routes = [
   {
     path: '/home',
@@ -53,9 +52,11 @@ const routes = [
   }
 ]
 
+// 创建路由实例，使用 process.env.BASE_URL 来设置 BASE_URL
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
+// 导出路由实例
 export default router
